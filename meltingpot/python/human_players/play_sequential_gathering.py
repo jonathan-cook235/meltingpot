@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""A simple human player for testing `coins`.
+"""A simple human player for testing `sequential gathering`.
 
 Use `WASD` keys to move the character around.
 Use `TAB` to switch between players.
@@ -22,9 +22,9 @@ import json
 from ml_collections import config_dict
 
 import sys
-print(sys.path)
+sys.path.insert(0, "Users/jcook/Desktop/cultural_transmission/meltingpot")
 
-from meltingpot.python.configs.substrates import coins
+from meltingpot.python.configs.substrates import sequential_gathering
 from meltingpot.python.human_players import level_playing_utils
 
 MAX_SCREEN_WIDTH = 600
@@ -32,7 +32,7 @@ MAX_SCREEN_HEIGHT = 450
 FRAMES_PER_SECOND = 8
 
 environment_configs = {
-    'coins': coins,
+    'sequential gathering': sequential_gathering,
 }
 
 
@@ -44,6 +44,7 @@ def no_op() -> int:
 _ACTION_MAP = {
     'move': level_playing_utils.get_direction_pressed,
     'turn': level_playing_utils.get_turn_pressed,
+    'pickup': level_playing_utils.get_space_key_pressed
 }
 
 
@@ -55,7 +56,7 @@ def verbose_fn(env_timestep, player_index, current_player_index):
 def main():
   parser = argparse.ArgumentParser(description=__doc__)
   parser.add_argument(
-      '--level_name', type=str, default='coins',
+      '--level_name', type=str, default='sequential gathering',
       choices=environment_configs.keys(),
       help='Level name to load')
   parser.add_argument(

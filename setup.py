@@ -51,6 +51,7 @@ setuptools.setup(
             'assets/saved_models/**/**/variables/variables.index',
             'lua/modules/*',
             'lua/levels/**/*',
+            
         ],
     },
     python_requires='>=3.9',
